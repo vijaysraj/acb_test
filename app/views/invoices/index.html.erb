@@ -1,0 +1,37 @@
+<div class="container">
+	List Of Invoices
+
+  <div class="row mx-md-n5"> 
+    <%= link_to 'Add a new bill', new_invoice_path, class: " btn btn-primary btn-space" %>
+
+    <button class="btn btn-primary btn-space" id="pending_bills"> Show Pending Bills </button>
+    <button class="btn btn-primary btn-space" id="completed_bills"> Show Collected Bills </button>
+
+  </div>
+
+  <span class="pending_bills">
+    <%= render :partial => 'invoices', locals: { collections: @pending_collections } %>
+  </span>
+
+  <span class="completed_bills">
+    <%= render :partial => 'invoices', locals: { collections: @completed_collections } %>  
+  </span>
+  
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    debugger;
+    $(".completed_bills").hide()
+    $("#pending_bills").click(function() {
+      $(".completed_bills").hide()
+      $(".pending_bills").show()
+    })
+
+    $("#completed_bills").click(function(){
+      $(".pending_bills").hide()
+      $(".completed_bills").show()
+    })
+
+  })
+</script>

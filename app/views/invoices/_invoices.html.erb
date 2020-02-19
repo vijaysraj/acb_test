@@ -1,0 +1,29 @@
+<div class="row mx-md-n5">
+    <table class="table table-bordered">
+      <tr>
+        <th> Reference </th>
+        <th> Invoice Date </th>
+        <th> Customer </th>
+        <th> Brand Manager </th>
+        <th> Narration </th>
+        <th> Amount </th>
+        <th> Total Collection </th>
+        <th> Balance Due </th>
+        <th> Add Collection </th>      
+      </tr>
+      <% collections.each do |invoice|%>
+        <tr> 
+          <td> <%= link_to invoice.reference, invoice_path(invoice) %> </td>
+          <td> <%= invoice.invoice_date %></td>
+          <td> <%= invoice.customer_name %></td>
+          <td> <%= invoice.brand_manager %></td>
+          <td> <%= invoice.narration %></td>
+          <td> <%= invoice.amount%> </td>
+          <td> <%= -invoice.collections.sum(:amount)%></td>
+          <td> <%= invoice.amount_due %></td>
+          <td> <%= link_to 'Add Collection', new_collection_path(invoice) %></td>
+        </tr>
+      <% end %>
+    </table>
+    
+  </div>
